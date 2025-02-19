@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const TitleContainer = styled.h1`
@@ -10,17 +11,17 @@ const TitleContainer = styled.h1`
    font-family: sans-serif;
 `;
 
-// Container para centralizar o formulário na tela
+
 const PageContainer = styled.div`
+  padding-top: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  min-width: 100vw;  /* Ocupa 100% da altura da tela */
-  background-color: #f8f9fa; /* Cor de fundo opcional */
+  
+  
 `;
 
-// Estilo do formulário
+
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -35,7 +36,7 @@ const FormContainer = styled.form`
   width: 100%;
 `;
 
-// Estilo dos inputs
+
 const Input = styled.input`
   width: 100%;
   padding: 12px;
@@ -50,7 +51,7 @@ const Input = styled.input`
   }
 `;
 
-// Estilo do botão
+
 const Button = styled.button`
   width: 100%;
   padding: 12px;
@@ -88,7 +89,6 @@ const Login = () => {
 
       const data = await response.json();
 
-      // Salva o token no localStorage
       localStorage.setItem('token', data.token);
 
       console.log('Token salvo:', data.token);
@@ -117,6 +117,9 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button type="submit">Entrar</Button>
+        <span className='linkredirect'>
+        <Link to="/signup">inda não tem conta? Criar conta.</Link>
+          </span>
       </FormContainer>
     </PageContainer>
   );

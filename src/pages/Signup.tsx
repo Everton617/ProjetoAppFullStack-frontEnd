@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-// Estilos
+
 const TitleContainer = styled.h1`
   text-align: center;
   font-size: 20px;
@@ -13,9 +15,7 @@ const PageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  min-width: 100vw;
-  background-color: #f8f9fa;
+  padding-top: 200px;
 `;
 
 const FormContainer = styled.form`
@@ -62,11 +62,12 @@ const Button = styled.button`
   }
 `;
 
-// Componente Signup
+
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -82,15 +83,8 @@ const Signup = () => {
         throw new Error('Erro ao criar conta');
       }
 
-      const data = await response.json();
+      navigate('/login');
 
-      // Salva o token no localStorage
-      localStorage.setItem('token', data.token);
-
-      console.log('Token salvo:', data.token);
-
-     
-     // window.location.href = '/';
     } catch (error) {
       console.error('Erro ao criar conta:', error);
     }
@@ -119,6 +113,7 @@ const Signup = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button type="submit">Criar conta</Button>
+        <span className='linkredirect'><Link to="/login">Já tem conta? Faça seu login.</Link></span>
       </FormContainer>
     </PageContainer>
   );

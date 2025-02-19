@@ -3,9 +3,11 @@ import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import Home from '../components/Home';
 import AppTask from '../components/AppTask';
+import useAuthMiddleware from '../../middleware'
 
 
 const AppRoutes = () => {
+  useAuthMiddleware()
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
