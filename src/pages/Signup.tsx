@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "mui-sonner";
 
 
 const TitleContainer = styled.h1`
@@ -82,11 +83,12 @@ const Signup = () => {
       if (!response.ok) {
         throw new Error('Erro ao criar conta');
       }
-
+      toast.success('Conta criada com sucesso!');
       navigate('/login');
 
     } catch (error) {
       console.error('Erro ao criar conta:', error);
+      toast.error('Erro ao criar conta');
     }
   };
 

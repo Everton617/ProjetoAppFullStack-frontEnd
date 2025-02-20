@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { toast } from "mui-sonner";
 
 
 const TitleContainer = styled.h1`
@@ -90,13 +91,15 @@ const Login = () => {
       const data = await response.json();
 
       localStorage.setItem('token', data.token);
-
+      
+      toast.success("Login realizado com sucesso!");
       console.log('Token salvo:', data.token);
 
      
       navigate('/tasks');
     } catch (error) {
       console.error('Erro ao fazer login:', error);
+      toast.error("Erro ao fazer login");
     }
   };
 
