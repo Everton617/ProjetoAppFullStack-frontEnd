@@ -235,7 +235,6 @@ const AppTask: React.FC = () => {
           placeholder='Adicionar nova tarefa'
           maxLength={20}
         />
-        {error && <p className="error-message">{error}</p>}
         <button className='btnAddTask' onClick={() => addTask(newTask)}>Adicionar</button>
       </div>
 
